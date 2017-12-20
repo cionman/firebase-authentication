@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Firebase-Tutorial</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="css/custom.css">
+  </head>
+  <body>
+    <!-- 로그인 화면 및 가입화면 영역 -->
+    <div id="dvAuth">
+      <div id="dvLogin">
+          <h5>로그인</h5>
+          <div id="dvSocial">
+              <ul class="btnGroup">
+                  <li id="liGoogleBtn" class="waves-effect waves-teal btn-flat"><i></i>구글 계정으로 가입 및 로그인</li>
+                  <li id="liFacebookBtn" class="waves-effect waves-teal btn-flat"><i></i>페이스북 계정으로 가입 및 로그인</li>
+                  <li id="liTwitterBtn" class="waves-effect waves-teal btn-flat"><i></i>트위터 계정으로 가입 및 로그인</li>
+                  <li id="liGithubBtn" class="waves-effect waves-teal btn-flat"><i></i>깃헙 계정으로 가입 및 로그인</li>
+                  <li id="liPhoneBtnShow" class="waves-effect waves-teal btn-flat"><a class="modal-trigger" href="#dvPhoneModal"><i></i>폰번호로 가입 및 로그인</a></li>
+                  <li id="liLogOut" class="waves-effect waves-teal btn-flat">로그아웃</li>
+              </ul>
+              <em class="or">or</em>
+          </div>
+          <div id="dvEmail">
+              <input type="email" id="userName" name="userName" class="input-text" placeholder="이메일 아이디">
+              <input type="password" id="password" name="password" class="input-text" maxlength="17" placeholder="비밀번호">
+              <ul class="btnGroup">
+                  <li id="liEmailBtn" class="waves-effect waves-teal btn-flat">이메일으로 로그인</li>
+              </ul>
+              <ul class="btnGroup">
+                  <li id="liEmailJoin" class="waves-effect waves-teal btn-flat">이메일으로 가입</li>
+              </ul>
+          </div>
+      </div>
+      <div id="dvJoin">
+          <h5>이메일 가입</h5>
+          <input type="text" id="joinUserName" name="userName" class="input-text" placeholder="이름">
+          <input type="email" id="joinUserEmail" name="userName" class="input-text" placeholder="이메일 아이디">
+          <input type="password" id="joinPassword" name="password" class="input-text" maxlength="17" placeholder="비밀번호">
+          <input type="password" id="joinRePassword" class="input-text" maxlength="17" placeholder="비밀번호 확인">
+          <ul class="btnGroup">
+              <li id="liEmailJoinSubmit" class="waves-effect waves-teal btn-flat">이메일으로 가입</li>
+          </ul>
+      </div>
+    </div>
+    <div id="dvPhoneModal" class="modal">
+        <div class="modal-content">
+            <h4>전화번호 입력</h4>
+            <div>
+                <input type="tel" id="phoneNumber" name="phoneNumber" class="input-text" placeholder="전화번호">
+                <a href="#!" id='aPhoneSend' class="waves-effect waves-green btn-flat">전송</a>
+                <div id="recaptcha"></div>
+            </div>
+            <input type="tel" id="authCode" name="authCode" class="input-text" placeholder="인증번호">
+        </div>
+        <div class="modal-footer">
+            <a href="#!" id='aPhoneBtn' class="waves-effect waves-green btn-flat">로그인</a>
+        </div>
+    </div>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <!-- update the version number as needed -->
+      <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase-auth.js"></script>
+      <script>
+          $(function(){
+              $('#dvPhoneModal').modal();
+          });
+      </script>
+  </body>
+</html>
