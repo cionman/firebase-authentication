@@ -66,9 +66,23 @@
       <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase-app.js"></script>
       <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase-auth.js"></script>
       <script>
+          // Firebase console 화면에서 가져온 코드
+          var config = {
+              apiKey: "AIzaSyDj2zZF7mA8C2Vr-HG61XQ5RzUEE9sxAAg",
+              authDomain: "fir-authentication-kr.firebaseapp.com",
+              databaseURL: "https://fir-authentication-kr.firebaseio.com",
+              projectId: "fir-authentication-kr",
+              storageBucket: "fir-authentication-kr.appspot.com",
+              messagingSenderId: "654453477928"
+          };
+          firebase.initializeApp(config);
+
+
           $(function(){
               $('#dvPhoneModal').modal();
           });
+
+
       </script>
   </body>
 </html>
