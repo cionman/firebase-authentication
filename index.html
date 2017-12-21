@@ -119,6 +119,25 @@
 
           });
 
+          //트위터 로그인 버튼 누를 시
+          document.getElementById('liTwitterBtn').addEventListener('click',function(){
+
+              var twitterProvider = new firebase.auth.TwitterAuthProvider();
+              firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE)
+                  .then(function() {
+                      return  firebase.auth().signInWithPopup(twitterProvider).then(function(result) {
+                          var user = result.user;
+                          console.log('user : ', user);
+                      }).catch(function(error) {
+                          console.error('',error);
+                      });
+                  })
+                  .catch(function(error) {
+                      var errorCode = error.code;
+                      var errorMessage = error.message;
+                  });
+          });
+
           //로그아웃
           document.getElementById('liLogOut').addEventListener('click',function(){
               if(confirm('로그아웃 하시겠습니까?')){
