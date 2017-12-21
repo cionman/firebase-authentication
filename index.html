@@ -140,7 +140,6 @@
 
           //깃헙 로그인 버튼 누를 시
           document.getElementById('liGithubBtn').addEventListener('click',function(){
-
               var githubProvider = new firebase.auth.GithubAuthProvider();
               firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE)
                   .then(function() {
@@ -163,6 +162,44 @@
                   firebase.auth().signOut();
               }
           });
+
+          //reCAPTCHA 인증기 설정
+          window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha', {
+              'size': 'invisible'
+          });
+
+          //폰인증 폰번호 전송 버튼
+          document.getElementById('aPhoneSend').addEventListener('click', function(){
+              var phoneNumber = '+82'+document.getElementById('phoneNumber').value.trim().substring(1);
+              var appVerifier = window.recaptchaVerifier;
+              firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE)
+                  .then(function() {
+                      return  firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+                          .then(function (confirmationResult) {
+                              alert('인증번호를 확인해주십시오');
+                              window.confirmationResult = confirmationResult;
+                              console.log('confirmationResult : ', confirmationResult);
+                          }).catch(function (error) {
+                              console.error('error : ', error);
+                          });
+                  })
+                  .catch(function(error) {
+                      var errorCode = error.code;
+                      var errorMessage = error.message;
+                  });
+
+          });
+
+          //폰번호 가입 및 로그인
+          document.getElementById('aPhoneBtn').addEventListener('click',function(){
+              var authCode = document.getElementById('authCode').value;
+              confirmationResult.confirm(authCode).then(function (result) {
+                  $('#dvPhoneModal').modal('close');
+              }).catch(function (error) {
+                  console.error('error : ', error);
+              });
+          });
+
 
           // 인증 상태 변화 관찰
           firebase.auth().onAuthStateChanged(function(user) {
