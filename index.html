@@ -138,6 +138,25 @@
                   });
           });
 
+          //깃헙 로그인 버튼 누를 시
+          document.getElementById('liGithubBtn').addEventListener('click',function(){
+
+              var githubProvider = new firebase.auth.GithubAuthProvider();
+              firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE)
+                  .then(function() {
+                      return  firebase.auth().signInWithPopup(githubProvider).then(function(result) {
+                          var user = result.user;
+                          console.log('user : ', user);
+                      }).catch(function(error) {
+                          console.error('',error);
+                      });
+                  })
+                  .catch(function(error) {
+                      var errorCode = error.code;
+                      var errorMessage = error.message;
+                  });
+          });
+
           //로그아웃
           document.getElementById('liLogOut').addEventListener('click',function(){
               if(confirm('로그아웃 하시겠습니까?')){
